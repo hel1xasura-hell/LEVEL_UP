@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>LEVEL UP</title>
+  <meta name="description" content="Personal training, discipline, and self-development tracker." />
+  <meta name="theme-color" content="#0e1013" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <!-- Fonts: self-hosting comes in a later pass; using system fallbacks
+       keeps Phase 1 fully offline with zero network dependency. -->
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navigation.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div id="app">
+
+    <header class="top-bar">
+      <span class="top-bar__title">LEVEL UP</span>
+      <!-- Level / XP badge will be wired up in Phase 2 (Dashboard) -->
+    </header>
+
+    <!-- ============ PAGES ============ -->
+    <!-- Each <main> is a page. app.js toggles [hidden] based on the
+         active nav tab. Real content for each replaces the placeholder
+         in its corresponding phase. -->
+
+    <main class="page" id="page-home" data-page="home">
+      <div id="dashboard-root"><!-- populated by js/modules/dashboard.js --></div>
+    </main>
+
+    <main class="page" id="page-training" data-page="training" hidden>
+      <div id="training-root"></div>
+      <button class="fab" data-fab="training" aria-label="Log entry">+</button>
+    </main>
+
+    <main class="page" id="page-brain" data-page="brain" hidden>
+      <div id="brain-root"></div>
+    </main>
+
+    <main class="page" id="page-progress" data-page="progress" hidden>
+      <div id="progress-root"></div>
+    </main>
+
+    <main class="page" id="page-settings" data-page="settings" hidden>
+      <div id="settings-root"></div>
+    </main>
+
+    <!-- ============ MODAL ROOT ============ -->
+    <div class="modal-backdrop" id="modal-root" hidden></div>
+
+    <!-- ============ BOTTOM NAV ============ -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="nav-item is-active" data-target="home" aria-label="Home">
+        <span class="nav-item__icon">
+          <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/></svg>
+        </span>
+        <span class="nav-item__label">Home</span>
+      </button>
+
+      <button class="nav-item" data-target="training" aria-label="Training">
+        <span class="nav-item__icon">
+          <svg viewBox="0 0 24 24"><path d="M6 7v10"/><path d="M18 7v10"/><path d="M2 10h4v4H2z"/><path d="M18 10h4v4h-4z"/><path d="M6 12h12"/></svg>
+        </span>
+        <span class="nav-item__label">Training</span>
+      </button>
+
+      <button class="nav-item" data-target="brain" aria-label="Brain">
+        <span class="nav-item__icon">
+          <svg viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5h1a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5h-1a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+        </span>
+        <span class="nav-item__label">Brain</span>
+      </button>
+
+      <button class="nav-item" data-target="progress" aria-label="Progress">
+        <span class="nav-item__icon">
+          <svg viewBox="0 0 24 24"><path d="M4 20V10"/><path d="M11 20V4"/><path d="M18 20v-7"/></svg>
+        </span>
+        <span class="nav-item__label">Progress</span>
+      </button>
+
+      <button class="nav-item" data-target="settings" aria-label="Settings">
+        <span class="nav-item__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        </span>
+        <span class="nav-item__label">Settings</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>

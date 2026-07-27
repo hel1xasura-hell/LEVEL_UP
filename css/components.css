@@ -1,0 +1,273 @@
+/* =========================================================
+   LEVEL UP — Shared components
+   Used across Training, Brain, Progress, Settings.
+   ========================================================= */
+
+/* ---------- Segmented control (sub-tabs within a page) ---------- */
+.segmented-control {
+  display: flex;
+  gap: var(--space-1);
+  background: var(--bg-sunken);
+  border-radius: var(--radius-md);
+  padding: var(--space-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.segmented-control::-webkit-scrollbar { display: none; }
+.segmented-control__item {
+  flex: 1;
+  white-space: nowrap;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.segmented-control__item.is-active {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* ---------- Forms ---------- */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+.form-field label {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--fs-base);
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--accent-ember);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+/* ---------- Modal ---------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: flex-end;
+  z-index: 200;
+}
+.modal-backdrop[hidden] { display: none; }
+.modal-sheet {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: var(--space-5);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.modal-sheet__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--fs-lg);
+  line-height: 1;
+}
+
+/* ---------- Floating action button ---------- */
+.fab {
+  position: fixed;
+  bottom: calc(var(--nav-height) + var(--space-4));
+  right: max(var(--space-5), calc((100vw - var(--content-max-width)) / 2 + var(--space-5)));
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-forge);
+  color: var(--text-on-accent);
+  border: none;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-elevated);
+  display: grid;
+  place-items: center;
+  z-index: 90;
+}
+
+/* ---------- Badges (achievements) ---------- */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  text-align: center;
+  opacity: 0.4;
+}
+.badge.is-unlocked { opacity: 1; }
+.badge__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+  background: var(--bg-elevated);
+  font-size: 1.2rem;
+}
+.badge.is-unlocked .badge__icon { background: var(--gradient-forge); }
+.badge__title { font-size: var(--fs-xs); font-weight: 700; }
+.badge__desc { font-size: 0.65rem; color: var(--text-secondary); }
+
+/* ---------- Achievement toast ---------- */
+.achievement-toast {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--bg-elevated);
+  border: 1px solid var(--accent-ember-dim);
+  box-shadow: var(--shadow-elevated);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  z-index: 300;
+  transition: top var(--duration-slow) var(--ease-standard);
+  max-width: calc(100% - var(--space-6));
+}
+.achievement-toast.is-visible { top: var(--space-4); }
+.achievement-toast__icon { font-size: 1.5rem; }
+.achievement-toast__title { font-weight: 700; font-size: var(--fs-sm); }
+.achievement-toast__desc { font-size: var(--fs-xs); color: var(--text-secondary); }
+
+/* ---------- History rows (workouts, sessions, brain logs) ---------- */
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.history-item:last-child { border-bottom: none; }
+.history-item__title { font-size: var(--fs-sm); font-weight: 600; }
+.history-item__meta { font-size: var(--fs-xs); color: var(--text-secondary); }
+.history-item__value { font-family: var(--font-mono); color: var(--accent-ember); font-weight: 700; }
+
+/* ---------- Technique / 5-state pill ---------- */
+.technique-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-2);
+}
+.technique-pill {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--bg-sunken);
+  color: var(--text-secondary);
+  border: none;
+}
+.technique-pill[data-status="learning"] { color: var(--accent-steel); }
+.technique-pill[data-status="practicing"] { color: var(--accent-gold); }
+.technique-pill[data-status="comfortable"] { color: var(--accent-jade); }
+.technique-pill[data-status="confident"] {
+  background: var(--gradient-forge);
+  color: var(--text-on-accent);
+}
+
+/* ---------- Calendar grid ---------- */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+.calendar-nav-btn {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.calendar-weekday {
+  text-align: center;
+  font-size: 0.6rem;
+  color: var(--text-tertiary);
+  padding-bottom: var(--space-1);
+}
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  background: var(--bg-sunken);
+  color: var(--text-tertiary);
+  position: relative;
+}
+.calendar-day.is-empty { background: transparent; }
+.calendar-day[data-level="partial"] { background: rgba(255, 107, 53, 0.25); color: var(--text-primary); }
+.calendar-day[data-level="full"] { background: var(--gradient-forge); color: var(--text-on-accent); font-weight: 700; }
+.calendar-day.is-today { outline: 2px solid var(--accent-steel); }
+
+/* ---------- Chart empty state ---------- */
+.chart-empty {
+  padding: var(--space-6) 0;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: var(--fs-sm);
+}
+
+/* ---------- Level pill (martial arts discipline level) ---------- */
+.level-pill {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--gradient-steel);
+  color: var(--text-on-accent);
+}

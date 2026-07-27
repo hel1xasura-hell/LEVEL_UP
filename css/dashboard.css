@@ -1,0 +1,211 @@
+/* =========================================================
+   LEVEL UP — Dashboard
+   ========================================================= */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ---------- Greeting ---------- */
+.dashboard__greeting h1 {
+  font-size: var(--fs-xl);
+}
+.dashboard__date {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+}
+.dashboard__quote {
+  margin-top: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  font-style: italic;
+  border-left: 2px solid var(--accent-ember);
+  padding-left: var(--space-3);
+}
+
+/* ---------- Forge Ring (shared component look) ---------- */
+.forge-ring {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+}
+.forge-ring__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.forge-ring__progress {
+  transition: stroke-dashoffset var(--duration-slow) var(--ease-standard);
+}
+
+/* ---------- Hero row: Level + Completion rings ---------- */
+.hero-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.hero-card__value {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  line-height: 1;
+}
+.hero-card__unit {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+}
+.hero-card__label {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+
+.streak-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: var(--space-1);
+}
+.streak-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.streak-stat__value {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--accent-ember);
+}
+.streak-stat__label {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+
+/* ---------- Task list ---------- */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.task-item__check {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-strong);
+  display: grid;
+  place-items: center;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+.task-item__check svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--text-on-accent);
+  fill: none;
+  stroke-width: 3;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.task-item__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.task-item__label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.task-item__xp {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+/* Status: in-progress */
+.task-item[data-status="in-progress"] {
+  border-color: var(--accent-steel);
+}
+.task-item[data-status="in-progress"] .task-item__check {
+  border-color: var(--accent-steel);
+  background: rgba(91, 143, 168, 0.15);
+}
+
+/* Status: completed */
+.task-item[data-status="completed"] {
+  border-color: var(--accent-ember-dim);
+}
+.task-item[data-status="completed"] .task-item__check {
+  background: var(--gradient-forge);
+  border-color: transparent;
+}
+.task-item[data-status="completed"] .task-item__check svg {
+  opacity: 1;
+}
+.task-item[data-status="completed"] .task-item__label {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  text-decoration-color: var(--border-strong);
+}
+
+/* ---------- Quick stats grid ---------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.stat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+}
+.stat-tile__value {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+}
+.stat-tile__label {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+
+.section-title {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-3);
+}

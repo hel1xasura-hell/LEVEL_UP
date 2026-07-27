@@ -1,0 +1,111 @@
+/* =========================================================
+   LEVEL UP — Design Tokens
+   Single source of truth for color, type, spacing, motion.
+   Every other stylesheet should reference these variables
+   instead of hardcoding raw values.
+   ========================================================= */
+
+:root {
+  /* ---------- Color: surfaces ---------- */
+  --bg-base: #0e1013;         /* app background, graphite not pure black */
+  --bg-surface: #171a1f;      /* cards, panels */
+  --bg-elevated: #1e2228;     /* modals, active/hover surfaces */
+  --bg-sunken: #0a0c0e;       /* inputs, wells */
+
+  /* ---------- Color: text ---------- */
+  --text-primary: #edeff2;
+  --text-secondary: #9aa1ac;
+  --text-tertiary: #5f6670;
+  --text-on-accent: #14100d;
+
+  /* ---------- Color: accents ---------- */
+  --accent-ember: #ff6b35;      /* XP, streaks, primary actions, level-up */
+  --accent-ember-dim: #7a3a20;
+  --accent-gold: #ffb648;       /* top of the ember gradient (Forge Ring) */
+  --accent-steel: #5b8fa8;      /* Brain training module */
+  --accent-jade: #4caf7d;       /* health / success states */
+  --accent-danger: #e05656;     /* missed streaks, destructive actions */
+
+  /* ---------- Borders ---------- */
+  --border-subtle: #2a2e35;
+  --border-strong: #3a3f48;
+
+  /* ---------- Gradients ---------- */
+  --gradient-forge: linear-gradient(135deg, var(--accent-ember), var(--accent-gold));
+  --gradient-steel: linear-gradient(135deg, #3f6a80, var(--accent-steel));
+
+  /* ---------- Typography ---------- */
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: 3rem;
+
+  /* ---------- Spacing scale (4px base) ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* ---------- Radii ---------- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-elevated: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --shadow-glow-ember: 0 0 24px rgba(255, 107, 53, 0.25);
+
+  /* ---------- Motion ---------- */
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 450ms;
+
+  /* ---------- Layout ---------- */
+  --nav-height: 64px;
+  --topbar-height: 56px;
+  --content-max-width: 560px; /* keeps things mobile-first even on desktop */
+}
+
+/* Respect reduced-motion preference app-wide */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Light theme (opt-in via Settings) ---------- */
+[data-theme="light"] {
+  --bg-base: #f4f3f1;
+  --bg-surface: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #ebe9e6;
+
+  --text-primary: #1a1c1f;
+  --text-secondary: #5f6670;
+  --text-tertiary: #8a909a;
+  --text-on-accent: #14100d;
+
+  --border-subtle: #e2e0dc;
+  --border-strong: #cfccc7;
+
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
